@@ -5,15 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import static sun.plugin2.main.client.PluginProxySelector.initialize;
+import java.net.MalformedURLException;
 
 /**
  * Created by Wale on 30/10/2016.
@@ -21,29 +18,31 @@ import static sun.plugin2.main.client.PluginProxySelector.initialize;
 public class DriverFactory {
 
     //public static  WebDriver driver =null;
+    public static RemoteWebDriver driver;
+    public static DesiredCapabilities caps = new DesiredCapabilities();
+    String browser = new PropertyReader().readProperty("browser");
 
-    protected static WebDriver driver;
+    //protected static WebDriver driver;
 
-    public DriverFactory() {
-        initialize();
-    }
-
-    public void initialize() {
-        if (driver == null)
-            try {
-                createNewDriverInstance();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-    }
-
-    //static final ExtentReports reports = ExtentReports.get(DriverFactory.class) ;
+    //public DriverFactory() {
+      //  initialize();
+   // }
 
 
-    @BeforeTest
-    private void createNewDriverInstance() throws IOException {
+    //public WebDriver initialize() {
+      //  if (driver == null)
+       //    try {
+        //       createNewDriverInstance();
+        //   } catch (IOException e) {
+       //        e.printStackTrace();
+      //     }
+    //    return null;
+   // }
 
-        String browser = new PropertyReader().readProperty("browser");
+
+
+    public WebDriver createNewDriverInstance()  {
+
 
         if (browser.contains("firefox")) {
             driver = new FirefoxDriver();
@@ -55,26 +54,37 @@ public class DriverFactory {
 
 
         } else if (browser.contains("ie")) {
-            System.setProperty("webdriver.ie.driver", "C:\\Users\\Anthony Soares\\Documents\\project framwork\\AutomatedTestSuite\\Projects\\ECommerceTesting\\NewApp\\src\\test\\java\\Browser\\IEDriverServer.exe");
+            System.setProperty("webdriver.ie.driver", "C:\\Users\\Anthony Soares\\IdeaProjects\\NewApp\\src\\test\\java\\Browser\\IEDriverServer.exe");
             driver = new InternetExplorerDriver();
-        }
-    }
 
-    public WebDriver getDriver() {
+        }
+        //createNewDriverInstance();
+
         return driver;
     }
 
-    public void destroyDriver() {
-        driver.quit();
-        driver = null;
-    }
+   //public WebDriver getDriver()  {
+     //  try {
+       //     createNewDriverInstance() ;
+       //} catch (IOException e) {
+        //   e.printStackTrace();
+       //}
+
+//       return null;
+  // }
+
+  //  public void destroyDriver() {
+  //      driver.quit();
+ //       driver = null;
+ //   }
 
     @AfterMethod
     public void Teardown() {
         driver.close();
     }
 
-}
+ }
+
 
 
 

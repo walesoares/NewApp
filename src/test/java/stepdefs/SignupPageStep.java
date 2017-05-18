@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
  */
 
 
-public class SignupPageStep extends DriverFactory {
+public class SignupPageStep  {
 
     private LoginStep loginStep ;
 
@@ -24,7 +24,7 @@ public class SignupPageStep extends DriverFactory {
 
     @Given("^when the user is on the sign up page$")
     public void when_the_user_is_on_the_sign_up_page() throws Throwable {
-      loginStep.then_the_login_page_should_be_displayed();
+      loginStep.when_a_user_is_on_the_homepage();
 
     }
 

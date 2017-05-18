@@ -1,5 +1,6 @@
 package stepdefs;
 
+import config.DriverFactory;
 import cucumber.api.Scenario;
 import org.junit.After;
 import org.junit.Before;
@@ -14,14 +15,14 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
  */
 public class SharedDriver extends EventFiringWebDriver {
 
-    private static final WebDriver REAL_DRIVER = new FirefoxDriver() ;
+    private static final WebDriver REAL_DRIVER = new DriverFactory().createNewDriverInstance() ;
     private static final Thread CLOSE_THREAD = new Thread() {
 
         @Override
         public void run() {
-            REAL_DRIVER.close();
+          REAL_DRIVER.close();
         }
-    };
+    } ;
 
     static {
         Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
@@ -30,6 +31,10 @@ public class SharedDriver extends EventFiringWebDriver {
     public SharedDriver() {
         super(REAL_DRIVER);
     }
+
+    //public SharedDriver(WebDriver driver) {
+     //   super(driver);
+    //}
 
     @Override
     public void close() {

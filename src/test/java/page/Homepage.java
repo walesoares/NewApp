@@ -25,8 +25,7 @@ public class Homepage extends General{
 
 
     public void toclickloginbtn () {
-     // driver.findElement(Log_in).click();
-     click(Log_in);
+          click(Log_in);
 
     }
 

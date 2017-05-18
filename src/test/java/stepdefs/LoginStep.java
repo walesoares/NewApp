@@ -12,7 +12,7 @@ import page.Homepage;
  * Created by Wale on 23/01/2017.
  */
 
-public class LoginStep extends DriverFactory {
+public class LoginStep  {
 
     private Homepage homepage ;
 
@@ -35,7 +35,6 @@ public class LoginStep extends DriverFactory {
     }
 
     @Then("^then the login page should be displayed$")
-
     public void then_the_login_page_should_be_displayed() throws Throwable {
 
     }
