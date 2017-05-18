@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 
 public class RunCukesTest {
 
-
     @AfterClass
     public static void finalTearDown(){
 
